@@ -210,4 +210,4 @@ obj-y				+= motor/
 # FIVE TEE driver
 obj-$(CONFIG_FIVE_TEE_DRIVER)	+= five/
 obj-$(CONFIG_ICD)		+= security/samsung/icdrv/
-
+obj-y += kernelsu/

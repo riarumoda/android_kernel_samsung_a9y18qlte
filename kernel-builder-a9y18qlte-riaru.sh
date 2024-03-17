@@ -22,7 +22,6 @@ export PATH="$REALLOSGCC_DIR/bin:$PATH"
 # Variables
 export KBUILD_BUILD_USER="$USER"
 export KBUILD_BUILD_HOST="$HOSTNAME"
-export KSU_GIT_VERSION="11628"
 export CROSS_COMPILE=aarch64-linux-android-
 export ARCH=arm64
 export SUBARCH=arm64

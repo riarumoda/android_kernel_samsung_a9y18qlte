@@ -13,10 +13,10 @@ sudo hwclock --systohc
 DEFCONFIG=a9y18qlte_defconfig
 
 # LineageOS 19.1 Google GCC 4.9
-git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 los-gcc
-LOSGCC_DIR="los-gcc"
+git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 ../los-gcc
+LOSGCC_DIR="../los-gcc"
 REALLOSGCC_DIR="$(pwd)"/${LOSGCC_DIR}
-sudo chmod 755 -R los-gcc
+sudo chmod 755 -R ../los-gcc
 export PATH="$REALLOSGCC_DIR/bin:$PATH"
 
 # Variables
@@ -36,12 +36,12 @@ rm -rf error.log
 make -j16 O=out clean
 make -j16 O=out $DEFCONFIG
 make -j16 ARCH=arm64 O=out SUBARCH=arm64 O=out \
-        CC=${LOSGCC_DIR}/bin/aarch64-linux-android-gcc \
-        LD=${LOSGCC_DIR}/bin/aarch64-linux-android-ld.bfd \
-        AR=${LOSGCC_DIR}/bin/aarch64-linux-android-ar \
-        AS=${LOSGCC_DIR}/bin/aarch64-linux-android-as \
-        NM=${LOSGCC_DIR}/bin/aarch64-linux-android-nm \
-        OBJCOPY=${LOSGCC_DIR}/bin/aarch64-linux-android-objcopy \
-        OBJDUMP=${LOSGCC_DIR}/bin/aarch64-linux-android-objdump \
-        STRIP=${LOSGCC_DIR}/bin/aarch64-linux-android-strip \
-        CROSS_COMPILE=${LOSGCC_DIR}/bin/aarch64-linux-android-
+        CC=${REALLOSGCC_DIR}/bin/aarch64-linux-android-gcc \
+        LD=${REALLOSGCC_DIR}/bin/aarch64-linux-android-ld.bfd \
+        AR=${REALLOSGCC_DIR}/bin/aarch64-linux-android-ar \
+        AS=${REALLOSGCC_DIR}/bin/aarch64-linux-android-as \
+        NM=${REALLOSGCC_DIR}/bin/aarch64-linux-android-nm \
+        OBJCOPY=${REALLOSGCC_DIR}/bin/aarch64-linux-android-objcopy \
+        OBJDUMP=${REALLOSGCC_DIR}/bin/aarch64-linux-android-objdump \
+        STRIP=${REALLOSGCC_DIR}/bin/aarch64-linux-android-strip \
+        CROSS_COMPILE=${REALLOSGCC_DIR}/bin/aarch64-linux-android-

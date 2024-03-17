@@ -25,7 +25,7 @@ endif
 # .git is a text file while the module is imported by 'git submodule add'.
 # ifeq ($(shell test -e $(srctree)/$(src)/../.git; echo $$?),0)
 # $(shell cd $(srctree)/$(src); /usr/bin/env PATH="$$PATH":/usr/bin:/usr/local/bin [ -f ../.git/shallow ] && git fetch --unshallow)
-KSU_GIT_VERSION := 11628
+KSU_GIT_VERSION := 11631
 # ksu_version: major * 10000 + git version + 200 for historical reasons, no more lel
 $(eval KSU_VERSION=$(KSU_GIT_VERSION))
 $(info -- KernelSU version: $(KSU_VERSION))

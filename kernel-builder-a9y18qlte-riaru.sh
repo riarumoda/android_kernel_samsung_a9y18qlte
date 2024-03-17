@@ -13,8 +13,8 @@ sudo hwclock --systohc
 DEFCONFIG=a9y18qlte_defconfig
 
 # LineageOS 19.1 Google GCC 4.9
-git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 ../los-gcc
-LOSGCC_DIR="../los-gcc"
+git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 los-gcc
+LOSGCC_DIR="los-gcc"
 REALLOSGCC_DIR="$(pwd)"/${LOSGCC_DIR}
 sudo chmod 755 -R los-gcc
 export PATH="$REALLOSGCC_DIR/bin:$PATH"

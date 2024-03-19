@@ -27,6 +27,24 @@ export ARCH=arm64
 export SUBARCH=arm64
 export HEADER_ARCH=arm64
 
+# KernelSU support
+KSU=0
+if [ "$KSU" == "1" ]; then
+	git clone https://github.com/tiann/KernelSU
+	cd drivers
+	ln -sf ../KernelSU/kernel kernelsu
+	cd ..
+	sed -i '/source "drivers\/security\/samsung\/icdrv\/Kconfig"/a source "drivers\/kernelsu\/Kconfig"' drivers/Kconfig
+	sed -i 's/# CONFIG_KSU is not set/CONFIG_KSU=y/g' arch/arm64/configs/$DEFCONFIG
+else
+	rm -rf KernelSU
+	cd drivers
+	rm -rf kernelsu
+	cd ..
+	sed -i '/source "drivers\/kernelsu\/Kconfig"/d' drivers/Kconfig
+	sed -i 's/CONFIG_KSU=y/# CONFIG_KSU is not set/g' arch/arm64/configs/$DEFCONFIG
+fi
+
 # Cleanup
 rm -rf out
 mkdir out

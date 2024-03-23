@@ -29,6 +29,7 @@ NOTHAVEGCC=1
 LOSGCC_DIR="los-gcc"
 REALLOSGCC_DIR="$(pwd)"/${LOSGCC_DIR}
 if [ "$NOTHAVEGCC" == "1" ]; then
+	rm -rf $LOSGCC_DIR
 	echo "Cloning Google GCC 4.9 from LienageOS Repository..."
 	git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 $LOSGCC_DIR &>> $REALLOGGER
 fi
@@ -52,10 +53,11 @@ if [ "$KSU" == "1" ]; then
 	cd drivers
 	rm -rf kernelsu &>> $REALLOGGER
 	cd ..
-	git clone https://github.com/tiann/KernelSU &>> $REALLOGGER
+	git clone https://github.com/backslashxx/KernelSU &>> $REALLOGGER
 	cd drivers
 	ln -sf ../KernelSU/kernel kernelsu &>> $REALLOGGER
 	cd ..
+	sed -i 's/ccflags-y += -Wno-implicit-function-declaration -Wno-strict-prototypes -Wno-int-conversion -Wno-gcc-compat/ccflags-y += -Wno-implicit-function-declaration -Wno-strict-prototypes/' KernelSU/kernel/Makefile
 	sed -i '/source "drivers\/security\/samsung\/icdrv\/Kconfig"/a source "drivers\/kernelsu\/Kconfig"' drivers/Kconfig
 	sed -i 's/# CONFIG_KSU is not set/CONFIG_KSU=y/g' arch/arm64/configs/$DEFCONFIG
 else

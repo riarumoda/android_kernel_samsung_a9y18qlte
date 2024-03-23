@@ -53,7 +53,7 @@ if [ "$KSU" == "1" ]; then
 	cd drivers
 	rm -rf kernelsu &>> $REALLOGGER
 	cd ..
-	git clone https://github.com/tiann/KernelSU &>> $REALLOGGER
+	git clone https://github.com/backslashxx/KernelSU &>> $REALLOGGER
 	cd drivers
 	ln -sf ../KernelSU/kernel kernelsu &>> $REALLOGGER
 	cd ..
